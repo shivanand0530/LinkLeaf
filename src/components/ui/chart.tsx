@@ -1,8 +1,9 @@
 import * as React from "react"
 import type { JSX } from "react"
 import * as RechartsPrimitive from "recharts"
-import type { TooltipProps } from 'recharts'
-import type { ContentType } from 'recharts/types/component/Tooltip'
+// import type { TooltipProps as RechartsTooltipProps } from 'recharts'
+import type { Payload } from 'recharts/types/component/DefaultTooltipContent'
+// import type { ContentType } from 'recharts/types/component/Tooltip'
 
 import { cn } from "../../libs/utils"
 
@@ -117,7 +118,7 @@ interface IndicatorStyles extends React.CSSProperties {
 }
 type ChartTooltipContentProps = {
   active?: boolean;
-  payload?: TooltipProps<any, any>['payload'];
+  payload?: Payload<any, any>[];
   className?: string;
   indicator?: "line" | "dot" | "dashed";
   hideLabel?: boolean;

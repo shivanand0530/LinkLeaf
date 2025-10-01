@@ -2,7 +2,8 @@
 import React, { useEffect, useRef, useState, memo } from "react";
 import { motion } from "motion/react";
 import { twMerge } from "tailwind-merge";
-import { cn } from "../../lib/utils";
+
+import { cn } from "../../libs/utils";
 
 export const TextRevealCard = ({
   text,

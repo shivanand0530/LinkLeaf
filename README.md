@@ -42,7 +42,7 @@ LinkLeaf is a modern, intuitive bookmark manager that helps you organize, search
 
 1. **Clone the repository**
    ```bash
-
+    git clone https://github.com/shivanand0530/LinkLeaf
    cd linkleaf
    ```
 
@@ -184,7 +184,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help, feel free to:
 - Open an issue on GitHub
-- Reach out via email: [kshivananda534@example.com]
+- Reach out via email: [kshivananda534@gmail.com]
 
 ---
 

@@ -13,8 +13,20 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
   const { loading } = useAppSelector((state) => state.auth)
 
   useEffect(() => {
+    // Handle OAuth callback hash
+    const handleAuthCallback = async () => {
+      if (window.location.hash) {
+        const { data, error } = await supabase.auth.getSession()
+        if (data.session) {
+          // Clear the hash from URL to clean up
+          window.history.replaceState({}, document.title, window.location.pathname)
+        }
+      }
+    }
+
     // Initialize auth state and fetch folders if user is authenticated
     const initializeApp = async () => {
+      await handleAuthCallback()
       const result = await dispatch(initializeAuth())
       
       // If user is authenticated after initialization, fetch their folders

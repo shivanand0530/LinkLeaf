@@ -5,6 +5,14 @@ import { supabase } from '../../libs/supabase'
 export const AuthCallback = () => {
   const navigate = useNavigate()
 
+  // Simple log to verify component mounts
+  console.log('AuthCallback component mounted!')
+  
+  // Immediate alert to test if component loads
+  if (typeof window !== 'undefined') {
+    alert('AuthCallback component loaded!')
+  }
+  
   useEffect(() => {
     const handleCallback = async () => {
       try {
@@ -62,10 +70,12 @@ export const AuthCallback = () => {
   }, [navigate])
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
-        <p className="mt-4 text-lg">Completing sign in...</p>
+    <div className="min-h-screen flex items-center justify-center bg-red-100">
+      <div className="text-center p-8 bg-white rounded-lg shadow-lg">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+        <p className="mt-4 text-lg font-bold">AUTH CALLBACK COMPONENT LOADED!</p>
+        <p className="mt-2 text-sm">Processing OAuth tokens...</p>
+        <p className="mt-2 text-xs text-gray-500">Check console for logs</p>
       </div>
     </div>
   )

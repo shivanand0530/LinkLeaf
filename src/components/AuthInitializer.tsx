@@ -13,33 +13,37 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
   const { loading } = useAppSelector((state) => state.auth)
 
   useEffect(() => {
-    // Handle OAuth callback hash
-    const handleAuthCallback = async () => {
-      if (window.location.hash) {
-        const { data, error } = await supabase.auth.getSession()
-        if (data.session) {
-          // Clear the hash from URL to clean up
+    let mounted = true
+
+    const initializeApp = async () => {
+      try {
+        // Let Supabase handle any OAuth callback automatically
+        const result = await dispatch(initializeAuth())
+        
+        if (!mounted) return
+
+        // Clean up URL hash if it contains auth tokens
+        if (window.location.hash && window.location.hash.includes('access_token')) {
           window.history.replaceState({}, document.title, window.location.pathname)
         }
-        if (error) {
-          console.error('Error handling auth callback:', error.message)
-          return
+        
+        // If user is authenticated after initialization, fetch their folders
+        if (initializeAuth.fulfilled.match(result) && result.payload) {
+          dispatch(fetchFolders())
         }
-      }
-    }
-
-    // Initialize auth state and fetch folders if user is authenticated
-    const initializeApp = async () => {
-      await handleAuthCallback()
-      const result = await dispatch(initializeAuth())
-      
-      // If user is authenticated after initialization, fetch their folders
-      if (initializeAuth.fulfilled.match(result) && result.payload) {
-        dispatch(fetchFolders())
+      } catch (error) {
+        console.error('Error initializing app:', error)
       }
     }
     
     initializeApp()
+
+    return () => {
+      mounted = false
+    }
+  }, [dispatch])
+
+  useEffect(() => {
 
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(

@@ -16,12 +16,18 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
     let mounted = true
 
     const handleOAuthCallback = async () => {
+      console.log('AuthInitializer: Checking for OAuth tokens...')
+      console.log('Current URL:', window.location.href)
+      
       // Check if we have OAuth tokens in the URL hash
       const hashParams = new URLSearchParams(window.location.hash.substring(1))
       const accessToken = hashParams.get('access_token')
       const refreshToken = hashParams.get('refresh_token')
       
+      console.log('Access token present:', !!accessToken)
+      
       if (accessToken) {
+        console.log('AuthInitializer: Processing OAuth tokens...')
         try {
           // Set the session with the tokens
           const { data, error } = await supabase.auth.setSession({
@@ -31,14 +37,17 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
           
           if (error) {
             console.error('Error setting OAuth session:', error)
+            alert(`OAuth Error: ${error.message}`)
           } else if (data.session) {
-            console.log('OAuth session set successfully')
+            console.log('OAuth session set successfully:', data.session.user?.email)
+            alert('OAuth successful! Redirecting...')
             // Clean up URL
             window.history.replaceState({}, document.title, window.location.pathname)
             return true
           }
         } catch (error) {
           console.error('Failed to handle OAuth callback:', error)
+          alert(`OAuth processing failed: ${error}`)
         }
       }
       return false

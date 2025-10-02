@@ -15,17 +15,44 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
   useEffect(() => {
     let mounted = true
 
+    const handleOAuthCallback = async () => {
+      // Check if we have OAuth tokens in the URL hash
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const accessToken = hashParams.get('access_token')
+      const refreshToken = hashParams.get('refresh_token')
+      
+      if (accessToken) {
+        try {
+          // Set the session with the tokens
+          const { data, error } = await supabase.auth.setSession({
+            access_token: accessToken,
+            refresh_token: refreshToken || ''
+          })
+          
+          if (error) {
+            console.error('Error setting OAuth session:', error)
+          } else if (data.session) {
+            console.log('OAuth session set successfully')
+            // Clean up URL
+            window.history.replaceState({}, document.title, window.location.pathname)
+            return true
+          }
+        } catch (error) {
+          console.error('Failed to handle OAuth callback:', error)
+        }
+      }
+      return false
+    }
+
     const initializeApp = async () => {
       try {
-        // Let Supabase handle any OAuth callback automatically
-        const result = await dispatch(initializeAuth())
+        // First handle OAuth callback if present
+        await handleOAuthCallback()
         
         if (!mounted) return
 
-        // Clean up URL hash if it contains auth tokens
-        if (window.location.hash && window.location.hash.includes('access_token')) {
-          window.history.replaceState({}, document.title, window.location.pathname)
-        }
+        // Then initialize auth state
+        const result = await dispatch(initializeAuth())
         
         // If user is authenticated after initialization, fetch their folders
         if (initializeAuth.fulfilled.match(result) && result.payload) {

@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound.tsx";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { SignIn } from "./components/auth/SignIn";
 import { SignUp } from "./components/auth/SignUp";
+import { AuthCallback } from "./components/auth/AuthCallback";
 import { AuthInitializer } from "./components/AuthInitializer";
 
 createRoot(document.getElementById("root")!).render(
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")!).render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Landing />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
             <Route
               path="/main"
               element={

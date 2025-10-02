@@ -21,6 +21,10 @@ export const AuthInitializer = ({ children }: AuthInitializerProps) => {
           // Clear the hash from URL to clean up
           window.history.replaceState({}, document.title, window.location.pathname)
         }
+        if (error) {
+          console.error('Error handling auth callback:', error.message)
+          return
+        }
       }
     }
 

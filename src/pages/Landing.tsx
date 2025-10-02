@@ -7,7 +7,7 @@ import { ThemeProvider } from "../context/ThemeContext";
 import { useAppSelector } from "../hooks/useRedux";
 import { SignIn } from "../components/auth/SignIn";
 import { SignUp } from "../components/auth/SignUp";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Tabs,
   TabsContent,
@@ -34,6 +34,13 @@ export default function Landing() {
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
 
   const Refcontainer = useRef(null!);
+
+  // Auto-redirect authenticated users
+  useEffect(() => {
+    if (user && !loading) {
+      navigate("/main", { replace: true });
+    }
+  }, [user, loading, navigate]);
 
   const handleGetStarted = () => {
     if (user) {

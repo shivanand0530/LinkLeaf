@@ -5,7 +5,7 @@ import tailwind from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwind()],
-  base : process.env.BASE_PATH || '/LinkLeaf',
+  // base: process.env.BASE_PATH || '/LinkLeaf', // Commented out for Vercel deployment
   build: {
     chunkSizeWarningLimit: 1000,  
   },

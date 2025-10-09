@@ -4,20 +4,20 @@
 
 LinkLeaf is a modern, intuitive bookmark manager that helps you organize, search, and access your favorite websites effortlessly. Built with React, TypeScript, and powered by Supabase, it offers a seamless experience across devices with real-time synchronization.
 
-## ✨ Features
+##  Features
 
-- 🔐 **Secure Authentication** - Sign up and sign in with Supabase authentication
-- 📁 **Folder Organization** - Create folders to categorize your bookmarks
-- 📌 **Pin Important Links** - Pin your most important bookmarks for quick access
-- 🔍 **Smart Search** - Find your bookmarks instantly with powerful search
-- 🎨 **Beautiful UI** - Modern interface built with Radix UI and Tailwind CSS
-- 📱 **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-- 🌙 **Dark/Light Mode** - Switch between themes for comfortable browsing
-- ⚡ **Real-time Sync** - Your bookmarks sync across all devices
-- 🖼️ **Auto Favicon** - Automatic favicon detection for visual organization
-- 📊 **Link Analytics** - Track and manage your bookmark collection
+-  **Secure Authentication** - Sign up and sign in with Supabase authentication
+-  **Folder Organization** - Create folders to categorize your bookmarks
+-  **Pin Important Links** - Pin your most important bookmarks for quick access
+-  **Smart Search** - Find your bookmarks instantly with powerful search
+-  **Beautiful UI** - Modern interface built with Radix UI and Tailwind CSS
+-  **Responsive Design** - Works perfectly on desktop, tablet, and mobile
+-  **Dark/Light Mode** - Switch between themes for comfortable browsing
+-  **Real-time Sync** - Your bookmarks sync across all devices
+-  **Auto Favicon** - Automatic favicon detection for visual organization
+-  **Link Analytics** - Track and manage your bookmark collection
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 **Frontend:**
 - React with TypeScript
@@ -76,7 +76,7 @@ LinkLeaf is a modern, intuitive bookmark manager that helps you organize, search
    
    Navigate to `http://localhost:5173` to see the application.
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 src/
@@ -117,7 +117,7 @@ src/
 - Filter by folders or pinned status
 - Sort by date added, alphabetical, or custom order
 
-## 📝 Scripts
+##  Scripts
 
 ```bash
 # Development
@@ -171,7 +171,7 @@ We welcome contributions! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [Radix UI](https://www.radix-ui.com/) for accessible component primitives
 - [Tailwind CSS](https://tailwindcss.com/) for utility-first CSS framework
@@ -180,7 +180,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Aceternity UI](https://ui.aceternity.com/) for beautiful components
 - [Framer Motion](https://www.framer.com/motion/) for smooth animations
 
-## 📧 Support
+##  Support
 
 If you have any questions or need help, feel free to:
 - Open an issue on GitHub
